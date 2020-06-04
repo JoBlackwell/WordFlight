@@ -77,6 +77,7 @@ game.gameController = {
         // Toggle next state
         for (var i = 0; i < game.controls.length; i++) {
             if (engine.input.pressed(game.controls[i])) {
+                game.playTutorial.play();
                 // Set game score to zero
                 game.score = 0;
                 // Reset the player object
@@ -192,6 +193,9 @@ game.gameController = {
     },
     gsEnd: function (dt) {
         // End Scene
+        
+        // Handle the initials animation
+        game.endPlayerInitials.animateInitials(dt);
 
         // DEBUG
         // Toggle next state
@@ -347,6 +351,9 @@ game.drawOnce = function () {
             this.inputKeypad.adjustStyle();
             this.playLetterSpaces.adjustStyle();
             this.inputKeypad.adjustStyle();
+            
+            // Display Snackbar
+            this.playTutorial.draw();
             break;
         case 'end':
             // Draw images on the canvas
@@ -368,11 +375,9 @@ game.drawOnce = function () {
             // Draw images on the canvas
             this.leaderboardBackground.draw();
             this.leaderboardTitle.draw();
-            this.leaderboardSponsor.draw();
             this.leaderboardClipboard.draw();
             this.leaderboardPlayerScore.draw();
             this.leaderboardPlane.draw();
-            this.leaderboardSponsorLogo.draw();
             this.top10players.adjustStyle();
             this.finalPlayerScore.draw();
 

@@ -128,7 +128,7 @@ game.leaderboardPlayerScore = {
     }
 };
 
-game.leaderboardSponsor = {
+/*game.leaderboardSponsor = {
 	// Get handle to image
     image: document.getElementById("wordFlightSponsor"),
 	// Declare object transform information
@@ -182,7 +182,7 @@ game.leaderboardSponsorLogo = {
         this.resize();
         engine.context.drawImage(this.image(), this.posX, this.posY, this.width, this.height);
     }
-};
+};*/
 
 game.finalPlayerScore = {
 	// Get handle to div
@@ -268,8 +268,8 @@ game.leaderboardAnimation = {
         
         // Continue drawing images
         game.leaderboardTitle.draw();
-        game.leaderboardSponsor.draw();
-        game.leaderboardSponsorLogo.draw();
+        /*game.leaderboardSponsor.draw();
+        game.leaderboardSponsorLogo.draw();*/
         game.leaderboardPlayerScore.draw();
         game.finalPlayerScore.draw();
         game.leaderboardClipboard.draw();
@@ -512,7 +512,7 @@ game.leaderboardRetryButton = {
         // Inform Google the player is starting a new game
         game.google.start();
         // Set the game state to Play Scene
-        game.currState = game.gameState[1];
+        game.currState = game.gameState[0];
         // Reset the player object
         game.player.reset();
         // Reset leaderboard table
@@ -525,6 +525,8 @@ game.leaderboardRetryButton = {
 		game.hideElements.hideAll();
         // Redraw all elements
 		game.drawOnce();
+        // Show the difficulty overlay before starting
+        game.difficultyOverlay.open();
     }
 };
 game.leaderboardRetryButton.init(); // Force initialize object on first script load
